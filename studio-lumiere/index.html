@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Lumière — Salão de Beleza</title>
+<meta name="description" content="Landing page profissional para salão de beleza com foco em agendamentos, posicionamento premium e atendimento via WhatsApp.">
+<meta name="keywords" content="salão de beleza, site para salão, agendamento online, design de sobrancelha, maquiagem">
+<meta property="og:title" content="Studio Lumière — Salão de Beleza">
+<meta property="og:description" content="Site de beleza com estratégia visual premium e captação de clientes por WhatsApp.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#FDF8F3; --dark:#1C1008; --rose:#C4697A; --rose-light:#FAF0F2; --gold:#D4A853; --muted:#8C7B6E; --white:#FFFFFF; --border:#EDE0D4; }
+  *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth} body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+  nav.scrolled{background:rgba(253,248,243,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:1rem 4rem}
+  .logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark);text-decoration:none}.logo span{color:var(--rose);font-style:italic}
+  .nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;letter-spacing:.05em;transition:color .2s}.nav-links a:hover{color:var(--rose)}
+  .btn-book{background:var(--rose);color:#fff;padding:.6rem 1.5rem;border:none;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .2s;border-radius:2px}.btn-book:hover{background:#B05569}
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 4rem;gap:4rem;padding-top:80px}
+  .hero-tag{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem}
+  .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5.5rem);line-height:1.05;margin-bottom:1.5rem}
+  .hero-title em{font-style:italic;color:var(--rose)}
+  .hero-desc{color:var(--muted);font-size:1rem;line-height:1.8;font-weight:300;margin-bottom:2rem}
+  .hero-btns{display:flex;gap:1rem}.btn-outline-rose{background:none;border:1px solid var(--rose);color:var(--rose);padding:.8rem 2rem;font-family:'Jost',sans-serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;border-radius:2px;transition:all .2s}.btn-outline-rose:hover{background:var(--rose-light)}
+  .btn-solid-rose{background:var(--rose);color:#fff;padding:.8rem 2rem;border:none;font-family:'Jost',sans-serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;border-radius:2px;display:inline-block;transition:all .2s}.btn-solid-rose:hover{background:#B05569}
+  .hero-visual{position:relative;height:600px}
+  .hero-img-main{position:absolute;right:0;top:50%;transform:translateY(-50%);width:75%;height:85%;background:linear-gradient(135deg,#2A1A1F,#3D2030);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.3}
+  .hero-img-float{position:absolute;left:0;bottom:10%;width:45%;height:45%;background:#fff;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;font-size:3rem;border:1px solid var(--border)}
+  .float-info{position:absolute;top:10%;left:0;background:#fff;padding:1.2rem 1.5rem;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.08);border:1px solid var(--border)}
+  .float-info .num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--rose)} .float-info .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+  .services{padding:6rem 4rem;max-width:1200px;margin:0 auto}
+  .sec-label{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--rose);margin-bottom:.8rem}
+  .sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;margin-bottom:3rem}
+  .sec-title em{font-style:italic;color:var(--rose)}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .svc-card{background:#fff;border:1px solid var(--border);padding:2rem;border-radius:4px;transition:all .3s}.svc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(196,105,122,.12);border-color:var(--rose)}
+  .svc-icon{font-size:2rem;margin-bottom:1rem}.svc-name{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.5rem}
+  .svc-desc{color:var(--muted);font-size:.875rem;line-height:1.7}.svc-price{margin-top:1rem;color:var(--rose);font-weight:500;font-size:.9rem}
+  .team{padding:6rem 4rem;background:#fff}
+  .team-inner{max-width:1200px;margin:0 auto}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+  .team-card{text-align:center}
+  .team-avatar{width:100%;aspect-ratio:1;background:linear-gradient(135deg,var(--rose-light),var(--border));border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;margin-bottom:1rem}
+  .team-name{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.25rem}
+  .team-role{font-size:.8rem;color:var(--rose);text-transform:uppercase;letter-spacing:.1em}
+  .gallery{padding:6rem 4rem;max-width:1200px;margin:0 auto}
+  .gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:1rem;margin-top:3rem}
+  .gal-item{background:linear-gradient(135deg,#2A1A1F,#F5DDE3);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.5}
+  .gal-item:first-child{grid-row:1/3}
+  .booking{padding:6rem 4rem;background:var(--dark);color:#fff}
+  .booking-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .booking h2{font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:1rem}
+  .booking h2 em{font-style:italic;color:var(--rose)}
+  .booking p{color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.8;margin-bottom:2rem}
+  .booking-perks{display:flex;flex-direction:column;gap:.7rem}
+  .perk{display:flex;align-items:center;gap:.75rem;font-size:.875rem;color:rgba(255,255,255,.7)}
+  .perk::before{content:'✦';color:var(--rose);font-size:.6rem}
+  .booking-form{display:flex;flex-direction:column;gap:1rem}
+  .bf input,.bf select{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.85rem 1rem;font-family:'Jost',sans-serif;font-size:.9rem;outline:none;border-radius:2px;transition:border-color .2s}.bf input:focus,.bf select:focus{border-color:var(--rose)}.bf select option{background:#1C1008}
+  .bf label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.3rem;display:block}
+  .bf .field{margin-bottom:.75rem}
+  .reviews{padding:6rem 4rem;background:var(--rose-light)}
+  .reviews-inner{max-width:1100px;margin:0 auto}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+  .rev-card{background:#fff;padding:1.75rem;border-radius:4px;border:1px solid var(--border)}
+  .rev-stars{color:var(--gold);margin-bottom:1rem;font-size:.9rem}
+  .rev-text{color:var(--muted);font-size:.875rem;line-height:1.7;font-style:italic;margin-bottom:1.25rem}
+  .rev-author{display:flex;align-items:center;gap:.75rem}
+  .rev-avatar{width:38px;height:38px;border-radius:50%;background:var(--rose-light);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+  .rev-name{font-size:.875rem;font-weight:500}.rev-info{font-size:.75rem;color:var(--muted)}
+  footer{background:var(--dark);color:#fff;padding:4rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;text-decoration:none;display:block;margin-bottom:1rem}.footer-logo span{color:var(--rose);font-style:italic}
+  .footer-desc{color:rgba(255,255,255,.35);font-size:.85rem;line-height:1.8}
+  .footer-col-title{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.2rem}
+  .footer-col-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+  .footer-col-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s}.footer-col-links a:hover{color:#fff}
+  .footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}
+  .footer-bottom p{color:rgba(255,255,255,.25);font-size:.75rem}.ft-rose{color:var(--rose)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(30px);transition:all .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+  @media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.8rem 1.5rem}.nav-links{display:none}.hero{grid-template-columns:1fr;padding:100px 1.5rem 4rem}.hero-visual{display:none}.services,.gallery,.reviews{padding:4rem 1.5rem}.services-grid{grid-template-columns:1fr}.team{padding:4rem 1.5rem}.team-grid{grid-template-columns:1fr 1fr}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.gal-item:first-child{grid-row:auto;grid-column:1/-1}.booking{padding:4rem 1.5rem}.booking-inner{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr;padding:3rem 1.5rem}.footer-bottom{flex-direction:column;gap:.5rem}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="logo">Studio <span>Lumière</span></a>
+  <ul class="nav-links"><li><a href="#servicos">Serviços</a></li><li><a href="#equipe">Equipe</a></li><li><a href="#galeria">Galeria</a></li><li><a href="#avaliacoes">Avaliações</a></li></ul>
+  <a href="https://wa.me/5511987654321?text=Ol%C3%A1%2C%20quero%20agendar%20um%20hor%C3%A1rio%20no%20Studio%20Lumi%C3%A8re." target="_blank" rel="noopener noreferrer" class="btn-book">Agendar Horário</a>
+</nav>
+<section class="hero">
+  <div>
+    <p class="hero-tag">Beleza & Bem-estar — São Paulo</p>
+    <h1 class="hero-title">Realce sua <em>beleza</em> natural com quem entende</h1>
+    <p class="hero-desc">No Studio Lumière, cada cliente é única. Técnicas exclusivas, produtos premium e um atendimento que vai além do salão.</p>
+    <div class="hero-btns">
+      <a href="#agendamento" class="btn-solid-rose">Agendar Agora</a>
+      <a href="#servicos" class="btn-outline-rose">Ver Serviços</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-main">✂️</div>
+    <div class="hero-img-float">💇‍♀️</div>
+    <div class="float-info"><div class="num">500+</div><div class="lbl">Clientes satisfeitas</div></div>
+  </div>
+</section>
+<section class="services" id="servicos">
+  <div class="reveal">
+    <p class="sec-label">Nossos Serviços</p>
+    <h2 class="sec-title">Tudo que você precisa <em>em um só lugar</em></h2>
+  </div>
+  <div class="services-grid reveal">
+    <div class="svc-card"><div class="svc-icon">✂️</div><h3 class="svc-name">Corte & Finalização</h3><p class="svc-desc">Cortes modernos e clássicos para todos os tipos de cabelo, finalizados com produtos de alta performance.</p><div class="svc-price">A partir de R$ 80</div></div>
+    <div class="svc-card"><div class="svc-icon">🎨</div><h3 class="svc-name">Coloração</h3><p class="svc-desc">Mechas, balayage, luzes e coloração completa com as melhores tinturas do mercado.</p><div class="svc-price">A partir de R$ 150</div></div>
+    <div class="svc-card"><div class="svc-icon">💆‍♀️</div><h3 class="svc-name">Tratamentos Capilares</h3><p class="svc-desc">Hidratação, reconstrução, cronograma capilar e tratamentos personalizados para seu cabelo.</p><div class="svc-price">A partir de R$ 120</div></div>
+    <div class="svc-card"><div class="svc-icon">💅</div><h3 class="svc-name">Manicure & Pedicure</h3><p class="svc-desc">Esmaltação simples, gel, fibra de vidro e nail art com esmaltes premium importados.</p><div class="svc-price">A partir de R$ 45</div></div>
+    <div class="svc-card"><div class="svc-icon">🌸</div><h3 class="svc-name">Design de Sobrancelha</h3><p class="svc-desc">Modelagem, henna, micropigmentação e laminação para o olhar perfeito.</p><div class="svc-price">A partir de R$ 60</div></div>
+    <div class="svc-card"><div class="svc-icon">✨</div><h3 class="svc-name">Maquiagem</h3><p class="svc-desc">Make social, noiva, debutante e aulas de automaquiagem com profissionais certificadas.</p><div class="svc-price">A partir de R$ 180</div></div>
+  </div>
+</section>
+<section class="team" id="equipe">
+  <div class="team-inner">
+    <div class="reveal"><p class="sec-label">Nossa Equipe</p><h2 class="sec-title">Profissionais <em>apaixonadas</em> pelo que fazem</h2></div>
+    <div class="team-grid reveal">
+      <div class="team-card"><div class="team-avatar">👩‍🦱</div><div class="team-name">Isabela Ramos</div><div class="team-role">Colorista Sênior</div></div>
+      <div class="team-card"><div class="team-avatar">👩‍🦰</div><div class="team-name">Camila Torres</div><div class="team-role">Especialista em Cortes</div></div>
+      <div class="team-card"><div class="team-avatar">👩‍🦳</div><div class="team-name">Fernanda Costa</div><div class="team-role">Tratamentos Capilares</div></div>
+      <div class="team-card"><div class="team-avatar">👱‍♀️</div><div class="team-name">Larissa Melo</div><div class="team-role">Nail Designer</div></div>
+    </div>
+  </div>
+</section>
+<section class="gallery" id="galeria">
+  <div class="reveal"><p class="sec-label">Galeria</p><h2 class="sec-title">Nossos <em>trabalhos</em></h2></div>
+  <div class="gallery-grid reveal">
+    <div class="gal-item">💇‍♀️</div><div class="gal-item">🎨</div><div class="gal-item">💅</div><div class="gal-item">✨</div><div class="gal-item">🌸</div>
+  </div>
+</section>
+<section class="booking" id="agendamento">
+  <div class="booking-inner">
+    <div class="reveal">
+      <h2>Agende seu <em>horário</em></h2>
+      <p>Reserve seu momento de cuidado. Respondemos em até 1 hora pelo WhatsApp.</p>
+      <div class="booking-perks">
+        <div class="perk">Confirmação imediata pelo WhatsApp</div>
+        <div class="perk">Cancelamento gratuito até 24h antes</div>
+        <div class="perk">Estacionamento conveniado</div>
+        <div class="perk">Wifi e café da manhã inclusos</div>
+      </div>
+    </div>
+    <form class="booking-form reveal" onsubmit="agend(event)">
+      <div class="bf"><div class="field"><label>Nome</label><input type="text" placeholder="Seu nome"></div></div>
+      <div class="bf"><div class="field"><label>WhatsApp</label><input type="tel" placeholder="(11) 99999-9999"></div></div>
+      <div class="bf"><div class="field"><label>Serviço</label><select><option>Corte & Finalização</option><option>Coloração</option><option>Tratamento Capilar</option><option>Manicure & Pedicure</option><option>Design de Sobrancelha</option><option>Maquiagem</option></select></div></div>
+      <div class="bf"><div class="field"><label>Data preferida</label><input type="date"></div></div>
+      <button type="submit" class="btn-solid-rose" style="width:100%;padding:.9rem;font-size:.9rem;margin-top:.5rem">Confirmar Agendamento</button>
+    </form>
+  </div>
+</section>
+<section class="reviews" id="avaliacoes">
+  <div class="reviews-inner">
+    <div class="reveal"><p class="sec-label">Avaliações</p><h2 class="sec-title">O que nossas clientes <em>dizem</em></h2></div>
+    <div class="rev-grid reveal">
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Fui pelo balayage e saí completamente apaixonada! A Isabela é uma artista. O salão é lindo, cheiroso e o café é delicioso."</p><div class="rev-author"><div class="rev-avatar">👩</div><div><div class="rev-name">Ana Beatriz Souza</div><div class="rev-info">Coloração</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Melhor salão que já fui na vida! Atendimento top, ambiente acolhedor e o resultado ficou incrível. Já marquei o próximo!"</p><div class="rev-author"><div class="rev-avatar">👩‍🦱</div><div><div class="rev-name">Gabriela Lima</div><div class="rev-info">Corte & Hidratação</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"A make da minha formatura ficou perfeita! Durou a noite toda. A Larissa entendeu exatamente o que eu queria. Super recomendo!"</p><div class="rev-author"><div class="rev-avatar">👱‍♀️</div><div><div class="rev-name">Mariana Rocha</div><div class="rev-info">Maquiagem</div></div></div></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div><a href="#" class="footer-logo">Studio <span>Lumière</span></a><p class="footer-desc">Beleza, cuidado e bem-estar no coração de São Paulo. Porque você merece o melhor.</p></div>
+    <div><p class="footer-col-title">Serviços</p><ul class="footer-col-links"><li><a href="#">Corte & Finalização</a></li><li><a href="#">Coloração</a></li><li><a href="#">Tratamentos</a></li><li><a href="#">Manicure</a></li><li><a href="#">Maquiagem</a></li></ul></div>
+    <div><p class="footer-col-title">Contato</p><ul class="footer-col-links"><li><a href="#">(11) 98765-4321</a></li><li><a href="#">studio@lumiere.com.br</a></li><li><a href="#">Rua Oscar Freire, 500 — SP</a></li><li><a href="#">Ter-Sáb: 9h às 19h</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 <span class="ft-rose">Studio Lumière</span>. Todos os direitos reservados.</p><p>Desenvolvido por <span class="ft-rose">markTDonizeti</span></p></div>
+</footer>
+<div id="toast" style="display:none;position:fixed;bottom:2rem;right:2rem;background:var(--rose);color:#fff;padding:1rem 2rem;border-radius:4px;font-size:.875rem;z-index:999">✓ Agendamento confirmado! Falaremos pelo WhatsApp.</div>
+<a href="https://wa.me/5511987654321?text=Ol%C3%A1%2C%20quero%20fazer%20um%20agendamento%20no%20Studio%20Lumi%C3%A8re." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" style="position:fixed;left:1.25rem;bottom:1.25rem;background:#25D366;color:#fff;padding:.75rem 1rem;border-radius:999px;font-weight:700;font-size:.8rem;text-decoration:none;z-index:999">WhatsApp</a>
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+  document.querySelectorAll('.reveal').forEach(r=>new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('visible')),{threshold:.1}).observe(r));
+  function agend(e){
+    e.preventDefault();
+    const t=document.getElementById('toast');
+    t.style.display='block';
+    const msg=encodeURIComponent('Olá! Quero agendar um horário no Studio Lumière.');
+    window.open(`https://wa.me/5511987654321?text=${msg}`,'_blank');
+    setTimeout(()=>t.style.display='none',4000)
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Viva — Saúde & Bem-estar</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F9FC;
+    --white: #FFFFFF;
+    --navy: #0B1F3A;
+    --blue: #1A6BCC;
+    --blue-light: #EBF3FF;
+    --teal: #0DA3A3;
+    --teal-light: #E6F7F7;
+    --text: #1A2B3C;
+    --muted: #6B7E93;
+    --border: #E2EAF3;
+    --green: #16A34A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 70px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 36px; height: 36px;
+    background: var(--blue);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .nav-logo-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; color: var(--navy);
+  }
+  .nav-logo-text span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-outline {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--blue); color: var(--blue);
+    background: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--blue-light); }
+  .btn-solid {
+    padding: 0.5rem 1.25rem;
+    background: var(--blue); color: white;
+    border: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-solid:hover { background: #1558B0; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 4rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--teal-light); color: var(--teal);
+    padding: 0.4rem 1rem; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 500;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1; color: var(--navy);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+  .hero-title em { font-style: italic; color: var(--blue); }
+  .hero-desc {
+    color: var(--muted); font-size: 1.05rem;
+    line-height: 1.8; font-weight: 300;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+  .btn-lg {
+    padding: 0.9rem 2rem; font-size: 0.95rem;
+    border-radius: 10px;
+  }
+  .hero-trust {
+    margin-top: 2.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+  .trust-avatars { display: flex; }
+  .trust-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid white;
+    background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; margin-left: -8px;
+  }
+  .trust-avatar:first-child { margin-left: 0; }
+  .trust-text { font-size: 0.85rem; color: var(--muted); }
+  .trust-text strong { color: var(--text); }
+
+  .hero-visual {
+    position: relative;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .hero-card-main {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(11,31,58,0.1);
+    position: relative; z-index: 1;
+  }
+  .hero-card-header {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 1.5rem;
+  }
+  .hero-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--navy);
+  }
+  .badge-online {
+    background: #DCFCE7; color: var(--green);
+    font-size: 0.7rem; font-weight: 500;
+    padding: 0.3rem 0.7rem; border-radius: 100px;
+  }
+  .specialty-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .specialty-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 0.75rem 1rem;
+    background: var(--bg); border-radius: 10px;
+    transition: background 0.2s;
+  }
+  .specialty-item:hover { background: var(--blue-light); }
+  .spec-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .spec-name { font-size: 0.9rem; font-weight: 500; }
+  .spec-sub { font-size: 0.75rem; color: var(--muted); }
+  .spec-arrow { margin-left: auto; color: var(--muted); font-size: 1rem; }
+
+  .hero-card-float {
+    position: absolute;
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 10px 40px rgba(11,31,58,0.12);
+  }
+  .float-1 { top: -1.5rem; right: -1.5rem; }
+  .float-2 { bottom: -1.5rem; left: -1.5rem; }
+  .float-stat { font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+  .float-label { font-size: 0.75rem; color: var(--muted); }
+  .float-rating { display: flex; gap: 2px; color: #F59E0B; font-size: 0.9rem; margin-bottom: 0.2rem; }
+
+  /* ESPECIALIDADES */
+  .especialidades {
+    padding: 6rem 4rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-tag {
+    display: inline-block;
+    background: var(--blue-light); color: var(--blue);
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.3rem 1rem; border-radius: 100px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--navy); line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--blue); }
+  .section-sub {
+    color: var(--muted); font-size: 1rem;
+    margin-top: 0.75rem; font-weight: 300;
+  }
+
+  .esp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .esp-card {
+    background: var(--white);
+    border-radius: 16px; padding: 2rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .esp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(11,31,58,0.1);
+    border-color: var(--blue);
+  }
+  .esp-icon {
+    width: 52px; height: 52px;
+    background: var(--blue-light);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 1.25rem;
+  }
+  .esp-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .esp-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.7; }
+  .esp-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--blue); font-size: 0.85rem; font-weight: 500;
+    margin-top: 1rem; text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .esp-link:hover { gap: 8px; }
+
+  /* MÉDICOS */
+  .medicos {
+    padding: 6rem 4rem;
+    background: var(--navy);
+  }
+  .medicos-inner { max-width: 1200px; margin: 0 auto; }
+  .medicos .section-title { color: white; }
+  .medicos .section-sub { color: rgba(255,255,255,0.5); }
+  .medicos .section-tag { background: rgba(26,107,204,0.3); color: #7BB3F0; }
+
+  .medicos-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .medico-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .medico-card:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-4px);
+  }
+  .medico-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin: 0 auto 1rem;
+  }
+  .medico-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: white; margin-bottom: 0.25rem;
+  }
+  .medico-esp { font-size: 0.8rem; color: var(--teal); margin-bottom: 0.5rem; }
+  .medico-crm { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+
+  /* AGENDAMENTO */
+  .agendamento {
+    padding: 6rem 4rem;
+    max-width: 1000px; margin: 0 auto;
+  }
+  .agend-wrap {
+    background: var(--white);
+    border-radius: 24px; padding: 3rem;
+    box-shadow: 0 20px 60px rgba(11,31,58,0.08);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .agend-info h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .agend-info h2 em { font-style: italic; color: var(--blue); }
+  .agend-info p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .agend-features { display: flex; flex-direction: column; gap: 0.75rem; }
+  .agend-feat {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.875rem; color: var(--text);
+  }
+  .feat-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #DCFCE7; color: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; flex-shrink: 0;
+  }
+
+  .agend-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-field label {
+    font-size: 0.8rem; font-weight: 500; color: var(--text);
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; color: var(--text);
+    background: var(--bg);
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    border-color: var(--blue);
+    background: white;
+  }
+  .form-field select option { background: white; }
+  .form-field textarea { resize: none; }
+  .form-submit { margin-top: 0.5rem; }
+  .form-submit .btn-solid { width: 100%; padding: 0.9rem; font-size: 0.95rem; border-radius: 10px; }
+
+  /* DEPOIMENTOS */
+  .depoimentos {
+    padding: 6rem 4rem;
+    background: var(--blue-light);
+  }
+  .dep-inner { max-width: 1200px; margin: 0 auto; }
+  .dep-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .dep-card {
+    background: white; border-radius: 16px; padding: 1.75rem;
+    box-shadow: 0 4px 20px rgba(11,31,58,0.06);
+  }
+  .dep-stars { color: #F59E0B; font-size: 0.9rem; margin-bottom: 1rem; }
+  .dep-text { color: var(--text); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
+  .dep-author { display: flex; align-items: center; gap: 10px; }
+  .dep-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--blue-light);
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .dep-name { font-size: 0.875rem; font-weight: 500; }
+  .dep-info { font-size: 0.75rem; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: white;
+    padding: 4rem;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; margin-bottom: 1rem;
+  }
+  .footer-logo-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; color: white;
+  }
+  .footer-logo-text span { color: var(--teal); }
+  .footer-desc { color: rgba(255,255,255,0.4); font-size: 0.875rem; line-height: 1.7; }
+  .footer-col-title {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 1.25rem;
+  }
+  .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col-links a {
+    color: rgba(255,255,255,0.6); text-decoration: none;
+    font-size: 0.875rem; transition: color 0.2s;
+  }
+  .footer-col-links a:hover { color: white; }
+  .footer-bottom {
+    max-width: 1200px; margin: 2rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+  .footer-teal { color: var(--teal); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 1.5rem 4rem; }
+    .hero-visual { display: none; }
+    .especialidades, .agendamento, .medicos, .depoimentos { padding: 4rem 1.5rem; }
+    .esp-grid { grid-template-columns: 1fr; }
+    .medicos-grid { grid-template-columns: 1fr 1fr; }
+    .agend-wrap { grid-template-columns: 1fr; padding: 2rem; }
+    .dep-grid { grid-template-columns: 1fr; }
+    footer { padding: 3rem 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🏥</div>
+    <span class="nav-logo-text">Clínica <span>Viva</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#medicos">Médicos</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#agendamento">Contato</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="tel:1134567890" class="btn-outline">(11) 3456-7890</a>
+    <a href="#agendamento" class="btn-solid">Agendar Consulta</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Atendimento presencial e telemedicina</div>
+    <h1 class="hero-title">Cuidando da sua saúde com <em>excelência</em> e carinho</h1>
+    <p class="hero-desc">Mais de 15 anos oferecendo atendimento humanizado com os melhores especialistas de São Paulo. Sua saúde em boas mãos.</p>
+    <div class="hero-actions">
+      <a href="#agendamento" class="btn-solid btn-lg">Agendar Consulta</a>
+      <a href="#especialidades" class="btn-outline btn-lg">Nossas Especialidades</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-avatars">
+        <div class="trust-avatar">👩</div>
+        <div class="trust-avatar">👨</div>
+        <div class="trust-avatar">👴</div>
+        <div class="trust-avatar">👧</div>
+      </div>
+      <p class="trust-text"><strong>+8.000 pacientes</strong> confiam na Clínica Viva</p>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="hero-card-header">
+        <span class="hero-card-title">Nossas Especialidades</span>
+        <span class="badge-online">● Online agora</span>
+      </div>
+      <div class="specialty-list">
+        <div class="specialty-item">
+          <div class="spec-icon">❤️</div>
+          <div>
+            <div class="spec-name">Cardiologia</div>
+            <div class="spec-sub">Próxima consulta: hoje</div>
+          </div>
+          <span class="spec-arrow">›</span>
+        </div>
+        <div class="specialty-item">
+          <div class="spec-icon">🧠</div>
+          <div>
+            <div class="spec-name">Neurologia</div>
+            <div class="spec-sub">Próxima consulta: amanhã</div>
+          </div>
+          <span class="spec-arrow">›</span>
+        </div>
+        <div class="specialty-item">
+          <div class="spec-icon">🦴</div>
+          <div>
+            <div class="spec-name">Ortopedia</div>
+            <div class="spec-sub">Próxima consulta: seg.</div>
+          </div>
+          <span class="spec-arrow">›</span>
+        </div>
+        <div class="specialty-item">
+          <div class="spec-icon">👁️</div>
+          <div>
+            <div class="spec-name">Oftalmologia</div>
+            <div class="spec-sub">Próxima consulta: ter.</div>
+          </div>
+          <span class="spec-arrow">›</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card-float float-1">
+      <div class="float-rating">★★★★★</div>
+      <div class="float-stat">4.9</div>
+      <div class="float-label">Avaliação média</div>
+    </div>
+    <div class="hero-card-float float-2">
+      <div class="float-stat">15+</div>
+      <div class="float-label">Anos de experiência</div>
+    </div>
+  </div>
+</section>
+
+<section class="especialidades" id="especialidades">
+  <div class="section-header reveal">
+    <span class="section-tag">Especialidades</span>
+    <h2 class="section-title">Cuidado completo para <em>toda a família</em></h2>
+    <p class="section-sub">Especialistas renomados prontos para atender você com toda a atenção que merece.</p>
+  </div>
+  <div class="esp-grid reveal">
+    <div class="esp-card">
+      <div class="esp-icon">❤️</div>
+      <h3 class="esp-name">Cardiologia</h3>
+      <p class="esp-desc">Diagnóstico e tratamento de doenças do coração com tecnologia de ponta e atendimento humanizado.</p>
+      <a href="#agendamento" class="esp-link">Agendar →</a>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">🧠</div>
+      <h3 class="esp-name">Neurologia</h3>
+      <p class="esp-desc">Tratamento de enxaquecas, epilepsia, AVC e outras doenças neurológicas com especialistas de referência.</p>
+      <a href="#agendamento" class="esp-link">Agendar →</a>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">🦴</div>
+      <h3 class="esp-name">Ortopedia</h3>
+      <p class="esp-desc">Cirurgias, reabilitação e tratamento de lesões musculoesqueléticas com foco na recuperação rápida.</p>
+      <a href="#agendamento" class="esp-link">Agendar →</a>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">👁️</div>
+      <h3 class="esp-name">Oftalmologia</h3>
+      <p class="esp-desc">Exames completos de visão, cirurgias a laser e tratamento de doenças oculares para todas as idades.</p>
+      <a href="#agendamento" class="esp-link">Agendar →</a>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">🫁</div>
+      <h3 class="esp-name">Pneumologia</h3>
+      <p class="esp-desc">Diagnóstico e tratamento de asma, DPOC, apneia do sono e outras doenças respiratórias.</p>
+      <a href="#agendamento" class="esp-link">Agendar →</a>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icon">🩺</div>
+      <h3 class="esp-name">Clínica Geral</h3>
+      <p class="esp-desc">Atendimento amplo e personalizado para check-up, diagnóstico e encaminhamento especializado.</p>
+      <a href="#agendamento" class="esp-link">Agendar →</a>
+    </div>
+  </div>
+</section>
+
+<section class="medicos" id="medicos">
+  <div class="medicos-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Nossa Equipe</span>
+      <h2 class="section-title">Médicos <em>especializados</em> e dedicados</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.4)">Profissionais com formação nas melhores universidades do Brasil e do exterior.</p>
+    </div>
+    <div class="medicos-grid reveal">
+      <div class="medico-card">
+        <div class="medico-avatar">👩‍⚕️</div>
+        <div class="medico-name">Dra. Ana Souza</div>
+        <div class="medico-esp">Cardiologia</div>
+        <div class="medico-crm">CRM-SP 123456</div>
+      </div>
+      <div class="medico-card">
+        <div class="medico-avatar">👨‍⚕️</div>
+        <div class="medico-name">Dr. Carlos Lima</div>
+        <div class="medico-esp">Neurologia</div>
+        <div class="medico-crm">CRM-SP 234567</div>
+      </div>
+      <div class="medico-card">
+        <div class="medico-avatar">👩‍⚕️</div>
+        <div class="medico-name">Dra. Paula Reis</div>
+        <div class="medico-esp">Ortopedia</div>
+        <div class="medico-crm">CRM-SP 345678</div>
+      </div>
+      <div class="medico-card">
+        <div class="medico-avatar">👨‍⚕️</div>
+        <div class="medico-name">Dr. Rodrigo Melo</div>
+        <div class="medico-esp">Oftalmologia</div>
+        <div class="medico-crm">CRM-SP 456789</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="agendamento" id="agendamento">
+  <div class="agend-wrap reveal">
+    <div class="agend-info">
+      <h2>Agende sua <em>consulta</em></h2>
+      <p>Atendemos presencialmente e por telemedicina. Preencha o formulário e nossa equipe entrará em contato para confirmar seu horário.</p>
+      <div class="agend-features">
+        <div class="agend-feat">
+          <div class="feat-check">✓</div>
+          Confirmação em até 2 horas
+        </div>
+        <div class="agend-feat">
+          <div class="feat-check">✓</div>
+          Atendimento presencial e online
+        </div>
+        <div class="agend-feat">
+          <div class="feat-check">✓</div>
+          Aceita todos os convênios
+        </div>
+        <div class="agend-feat">
+          <div class="feat-check">✓</div>
+          Estacionamento gratuito
+        </div>
+      </div>
+    </div>
+    <form class="agend-form" onsubmit="handleAgend(event)">
+      <div class="form-field">
+        <label>Nome completo</label>
+        <input type="text" placeholder="Seu nome completo">
+      </div>
+      <div class="form-field">
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" placeholder="(11) 99999-9999">
+      </div>
+      <div class="form-field">
+        <label>E-mail</label>
+        <input type="email" placeholder="seu@email.com">
+      </div>
+      <div class="form-field">
+        <label>Especialidade</label>
+        <select>
+          <option value="">Selecione a especialidade</option>
+          <option>Cardiologia</option>
+          <option>Neurologia</option>
+          <option>Ortopedia</option>
+          <option>Oftalmologia</option>
+          <option>Pneumologia</option>
+          <option>Clínica Geral</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Tipo de atendimento</label>
+        <select>
+          <option>Presencial</option>
+          <option>Telemedicina</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Observações</label>
+        <textarea rows="3" placeholder="Descreva brevemente o motivo da consulta..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-solid">Solicitar Agendamento</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="depoimentos" id="depoimentos">
+  <div class="dep-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Depoimentos</span>
+      <h2 class="section-title">O que nossos <em>pacientes</em> dizem</h2>
+    </div>
+    <div class="dep-grid reveal">
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Atendimento impecável desde a recepção até a consulta. A Dra. Ana foi extremamente atenciosa e explicou tudo com clareza. Me senti muito segura."</p>
+        <div class="dep-author">
+          <div class="dep-avatar">👩</div>
+          <div>
+            <div class="dep-name">Maria Clara Santos</div>
+            <div class="dep-info">Paciente de Cardiologia</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Fui encaminhado pelo plano e não esperava tanto cuidado. O Dr. Carlos resolveu em uma consulta o que eu arrastava há meses. Recomendo muito!"</p>
+        <div class="dep-author">
+          <div class="dep-avatar">👨</div>
+          <div>
+            <div class="dep-name">Roberto Almeida</div>
+            <div class="dep-info">Paciente de Neurologia</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Trouxe minha mãe de 78 anos e o atendimento foi extraordinário. Paciência, atenção e muita competência. A clínica é linda e muito bem estruturada."</p>
+        <div class="dep-author">
+          <div class="dep-avatar">👧</div>
+          <div>
+            <div class="dep-name">Juliana Ferreira</div>
+            <div class="dep-info">Familiar de Paciente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="#" class="footer-logo">
+        <div class="nav-logo-icon">🏥</div>
+        <span class="footer-logo-text">Clínica <span>Viva</span></span>
+      </a>
+      <p class="footer-desc">Cuidando da saúde das famílias paulistanas há mais de 15 anos com excelência, humanidade e tecnologia.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Especialidades</p>
+      <ul class="footer-col-links">
+        <li><a href="#">Cardiologia</a></li>
+        <li><a href="#">Neurologia</a></li>
+        <li><a href="#">Ortopedia</a></li>
+        <li><a href="#">Oftalmologia</a></li>
+        <li><a href="#">Pneumologia</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Clínica</p>
+      <ul class="footer-col-links">
+        <li><a href="#">Sobre nós</a></li>
+        <li><a href="#">Nossa equipe</a></li>
+        <li><a href="#">Convênios</a></li>
+        <li><a href="#">Trabalhe conosco</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contato</p>
+      <ul class="footer-col-links">
+        <li><a href="#">(11) 3456-7890</a></li>
+        <li><a href="#">contato@clinicaviva.com.br</a></li>
+        <li><a href="#">Av. Paulista, 1000 — SP</a></li>
+        <li><a href="#">Seg-Sex: 7h às 20h</a></li>
+        <li><a href="#">Sáb: 8h às 14h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 <span class="footer-teal">Clínica Viva</span>. Todos os direitos reservados.</p>
+    <p>Desenvolvido por <span class="footer-teal">markTDonizeti</span></p>
+  </div>
+</footer>
+
+<div id="toast" style="display:none; position:fixed; bottom:2rem; right:2rem; background:#16A34A; color:white; padding:1rem 2rem; border-radius:12px; font-size:0.875rem; z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.15); animation:fadeUp 0.3s ease;">
+  ✓ Agendamento solicitado! Entraremos em contato em breve.
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  function handleAgend(e) {
+    e.preventDefault();
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 4000);
+  }
+</script>
+</body>
+</html>

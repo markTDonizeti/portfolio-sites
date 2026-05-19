@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>APEX GYM — Supere seus Limites</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{--bg:#0A0A0A;--white:#FFFFFF;--red:#E8213A;--red-dark:#B01A2E;--gray:#1A1A1A;--gray2:#242424;--muted:#888;--border:#2A2A2A}
+
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+
+  nav{position:fixed;
+    top:0;
+    width:100%;
+    z-index:100;
+    padding:1.25rem 4rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(10,10,10,.9);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border)}
+  .logo{font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;
+  color:var(--white);
+  text-decoration:none;
+  letter-spacing:.1em}.logo span{color:var(--red)}
+  .nav-links{display:flex;
+    gap:2.5rem;
+    list-style:none}.nav-links a{color:var(--muted);
+        text-decoration:none;
+        font-size:.85rem;
+        letter-spacing:.05em;
+        text-transform:uppercase;
+        transition:color .2s}.nav-links a:hover{color:var(--white)}
+  .btn-red{background:var(--red);
+    color:#fff;
+    padding:.65rem 1.5rem;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-size:.8rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+    transition:all .2s;
+    clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}.btn-red:hover{background:var(--red-dark)}
+  .hero{min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    padding:0 4rem;padding-top:80px}
+  .hero-bg{position:absolute;
+    inset:0;
+    background:linear-gradient(105deg,#0A0A0A 45%,rgba(232,33,58,.08) 100%)}
+  .hero-grid{position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+    background-size:60px 60px}
+  .hero-content{position:relative;
+    z-index:1;
+    max-width:700px}
+  .hero-tag{display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(232,33,58,.15);
+    border:1px solid rgba(232,33,58,.3);
+    color:var(--red);
+    padding:.4rem 1rem;
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    margin-bottom:2rem}
+  .hero-tag::before{content:'';
+  width:6px;
+  height:6px;
+  background:var(--red);
+  border-radius:50%;
+  animation:blink 1.5s infinite}
+  .hero-title{font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,12vw,10rem);
+  line-height:.9;
+  letter-spacing:.02em;
+  margin-bottom:1.5rem}
+  .hero-title span{color:var(--red);
+    display:block}
+  .hero-desc{color:var(--muted);
+    font-size:1rem;
+    line-height:1.8;
+    max-width:500px;
+    margin-bottom:2.5rem}
+  .hero-btns{display:flex;
+    gap:1rem;
+    flex-wrap:wrap}
+  .btn-ghost{background:none;
+    border:1px solid var(--border);
+    color:var(--white);
+    padding:.65rem 1.5rem;
+    font-family:'Inter',sans-serif;
+    font-size:.8rem;
+    font-weight:500;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+    transition:all .2s}.btn-ghost:hover{border-color:var(--white)}
+  .hero-stats{position:absolute;right:4rem;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:2rem;z-index:1}
+  .stat-item{text-align:right}
+  .stat-num{font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;
+  color:var(--white);
+  line-height:1}
+  .stat-num span{color:var(--red)}
+  .stat-label{font-size:.7rem;
+    color:var(--muted);
+    text-transform:uppercase;
+           letter-spacing:.15em}
+  .strip{background:var(--red);padding:1rem 4rem;display:flex;
+    gap:4rem;
+    overflow:hidden;
+    white-space:nowrap}
+  .strip-text{font-family:'Bebas Neue',sans-serif;
+  font-size:1.2rem;
+  letter-spacing:.15em;
+  display:flex;
+  gap:4rem;
+  animation:marquee 20s linear infinite}
+  .strip-dot{color:rgba(255,255,255,.4)}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .planos{padding:6rem 4rem;
+    max-width:1200px;
+    margin:0 auto}
+  .sec-tag{font-size:.7rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:.75rem}
+  .sec-title{font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4rem);
+  letter-spacing:.05em;
+  margin-bottom:3rem}
+  .planos-grid{display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem}
+  .plano-card{background:var(--gray);
+    border:1px solid var(--border);padding:2.5rem;
+    position:relative;
+    transition:all .3s}.plano-card:hover{border-color:var(--red);
+    transform:translateY(-4px)}
+  .plano-card.featured{background:var(--red);
+    border-color:var(--red)}
+  .plano-badge{position:absolute;top:-1px;
+    right:2rem;
+    background:var(--white); 
+    color:var(--red);
+    font-size:.65rem;
+    font-weight:700;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    padding:.3rem .8rem}
+  .plano-name{font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;
+  letter-spacing:.1em;
+  margin-bottom:.5rem}
+  .plano-price{font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;
+  line-height:1;
+  margin-bottom:.25rem}
+  .plano-price sup{font-size:1.5rem;
+    vertical-align:top;
+    margin-top:.5rem}
+  .plano-period{font-size:.8rem;
+    color:rgba(255,255,255,.5);
+    margin-bottom:2rem}
+  .plano-card.featured .plano-period{color:rgba(255,255,255,.7)}
+  .plano-features{list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:.75rem;
+    margin-bottom:2rem}
+  .plano-features li{font-size:.875rem;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    color:rgba(255,255,255,.75)}
+  .plano-features li::before{content:'✓';
+  color:var(--red);
+  font-weight:700;font-size:.8rem}
+  .plano-card.featured .plano-features li::before{color:#fff}
+  .plano-card.featured .plano-features li{color:rgba(255,255,255,.9)}
+  .btn-red-outline{background:none;
+    border:1px solid var(--red);
+    color:var(--red);
+    padding:.75rem;
+    width:100%;
+    font-family:'Inter',sans-serif;font-size:.85rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.1em;cursor:pointer;
+    transition:all .2s}.btn-red-outline:hover{background:var(--red);
+    color:#fff}
+  .btn-white{background:#fff;border:1px solid #fff;color:var(--red);
+    padding:.75rem;
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:.85rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    cursor:pointer;
+    transition:all .2s}.btn-white:hover{background:rgba(255,255,255,.85)}
+  .modalidades{padding:6rem 4rem;
+    background:var(--gray)}
+  .modal-inner{max-width:1200px;
+    margin:0 auto}
+  .modal-grid{display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--border);
+    margin-top:3rem}
+  .modal-item{background:var(--gray2);
+    padding:2rem;
+    text-align:center;
+    transition:all .3s}.modal-item:hover{background:#2E2E2E}
+  .modal-icon{font-size:2.5rem;
+    margin-bottom:1rem}
+  .modal-name{font-family:'Bebas Neue',sans-serif
+  ;font-size:1.3rem;
+  letter-spacing:.1em;
+  margin-bottom:.5rem}
+  .modal-desc{font-size:.8rem;
+    color:var(--muted);
+    line-height:1.6}
+  .trainers{padding:6rem 4rem;
+    max-width:1200px;
+    margin:0 auto}
+  .trainers-grid{display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1.5rem;
+    margin-top:3rem}
+  .trainer-card{position:relative;
+    overflow:hidden}
+  .trainer-img{width:100%;
+    aspect-ratio:3/4;
+    background:linear-gradient(135deg,var(--gray),#333);
+    display:flex
+    ;align-items:center;
+    justify-content:center;
+    font-size:4rem;
+    clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
+  .trainer-info{padding:1.25rem 0}
+  .trainer-name{font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;
+  letter-spacing:.08em}
+  .trainer-role{font-size:.75rem;
+    color:var(--red);
+    text-transform:uppercase;
+    letter-spacing:.12em}
+  .cta-section{padding:6rem 4rem;
+    background:var(--red);
+    text-align:center}
+  .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,6rem);
+  letter-spacing:.05em;
+  margin-bottom:1rem}
+  .cta-desc{font-size:1rem;color:rgba(255,255,255,.75);
+    margin-bottom:2.5rem}
+  .form-section{padding:6rem 4rem;
+    max-width:700px;
+    margin:0 auto}
+  .contact-form{background:var(--gray);
+    border:1px solid var(--border);
+    padding:3rem;display:flex;
+    flex-direction:column;
+    gap:1rem}
+  .cf-field{display:flex;
+    flex-direction:column;
+    gap:.4rem}
+  .cf-field label{font-size:.7rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted)}
+  .cf-field input,.cf-field select{background:var(--bg);border:1px solid var(--border);color:#fff;padding:.85rem 1rem;font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}.cf-field input:focus,.cf-field select:focus{border-color:var(--red)}.cf-field select option{background:var(--bg)}
+  footer{background:var(--gray);
+    border-top:1px solid var(--border);
+    padding:4rem}
+  .footer-inner{max-width:1200px;
+    margin:0 auto;display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:3rem}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;
+  color:#fff;
+  text-decoration:none;
+  letter-spacing:.1em;display:block;
+  margin-bottom:1rem}.footer-logo span{color:var(--red)}
+  .footer-desc{color:var(--muted);
+    font-size:.85rem;
+    line-height:1.8}
+  .footer-col-title{font-size:.65rem;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:1.2rem}
+  .footer-col-links{list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:.6rem}
+  .footer-col-links a{color:#666;
+    text-decoration:none;
+    font-size:.85rem;
+    transition:color .2s}.footer-col-links a:hover{color:#fff}
+  .footer-bottom{max-width:1200px;
+    margin:2rem auto 0;
+    padding-top:2rem;
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-between}
+  .footer-bottom p{color:#444;font-size:.75rem}.ft-red{color:var(--red)}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  .reveal{opacity:0;
+    transform:translateY(30px);
+    transition:all .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+  @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.hero{padding:100px 1.5rem 4rem}.hero-stats{display:none}.planos,.modalidades,.trainers,.form-section{padding:4rem 1.5rem}.planos-grid{grid-template-columns:1fr}.modal-grid{grid-template-columns:1fr 1fr}.trainers-grid{grid-template-columns:1fr 1fr}.footer-inner{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:.5rem}.strip{padding:1rem}}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+  <a href="#" class="logo">APEX<span>GYM</span></a>
+
+  
+  <ul class="nav-links"><li><a href="#planos">Planos</a></li><li><a href="#modalidades">Modalidades</a></li><li><a href="#trainers">Trainers</a></li><li><a href="#contato">Contato</a></li></ul>
+  <a href="#contato" class="btn-red">Começar Agora</a>
+
+</nav>
+
+<section class="hero">
+
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Academia Premium — São Paulo</div>
+    <h1 class="hero-title">SUPERE<span>SEUS LIMITES</span></h1>
+    <p class="hero-desc">Equipamentos de última geração, trainers certificados e uma comunidade que empurra você além do que acreditava ser possível.</p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn-red">Começar Grátis</a>
+      <a href="#planos" class="btn-ghost">Ver Planos</a>
+    </div>
+
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">2<span>K</span></div><div class="stat-label">Membros ativos</div></div>
+    <div class="stat-item"><div class="stat-num">15<span>+</span></div><div class="stat-label">Modalidades</div></div>
+    <div class="stat-item"><div class="stat-num">8<span>+</span></div><div class="stat-label">Anos de história</div></div>
+  </div>
+</section>
+<div class="strip">
+  <div class="strip-text">
+    <span>MUSCULAÇÃO</span><span class="strip-dot">◆</span><span>CROSSFIT</span><span class="strip-dot">◆</span><span>SPINNING</span><span class="strip-dot">◆</span><span>MUAY THAI</span><span class="strip-dot">◆</span><span>PILATES</span><span class="strip-dot">◆</span><span>YOGA</span><span class="strip-dot">◆</span><span>FUNCIONAL</span><span class="strip-dot">◆</span>
+    <span>MUSCULAÇÃO</span><span class="strip-dot">◆</span><span>CROSSFIT</span><span class="strip-dot">◆</span><span>SPINNING</span><span class="strip-dot">◆</span><span>MUAY THAI</span><span class="strip-dot">◆</span><span>PILATES</span><span class="strip-dot">◆</span><span>YOGA</span><span class="strip-dot">◆</span><span>FUNCIONAL</span><span class="strip-dot">◆</span>
+  </div>
+
+</div>
+
+<section class="planos" id="planos">
+  <div class="reveal"><p class="sec-tag">Planos</p><h2 class="sec-title">ESCOLHA SEU PLANO</h2></div>
+  <div class="planos-grid reveal">
+    <div class="plano-card">
+      <div class="plano-name">Básico</div>
+      <div class="plano-price"><sup>R$</sup>89</div>
+      <div class="plano-period">/mês • Sem fidelidade</div>
+      <ul class="plano-features"><li>Musculação livre</li><li>Cardio (esteiras/bikes)</li><li>Vestiários completos</li><li>Acesso de seg a sex</li></ul>
+      <button class="btn-red-outline" onclick="scroll2()">Assinar Agora</button>
+
+    </div>
+
+    <div class="plano-card featured">
+      <div class="plano-badge">Mais popular</div>
+      <div class="plano-name">Premium</div>
+      <div class="plano-price"><sup>R$</sup>149</div>
+      <div class="plano-period">/mês • Sem fidelidade</div>
+      <ul class="plano-features"><li>Tudo do Básico</li><li>Todas as aulas coletivas</li><li>Acesso 24h/7 dias</li><li>1 avaliação física/mês</li><li>App de treinos</li></ul>
+      <button class="btn-white" onclick="scroll2()">Assinar Agora</button>
+    </div>
+
+    <div class="plano-card">
+      <div class="plano-name">Elite</div>
+      <div class="plano-price"><sup>R$</sup>249</div>
+      <div class="plano-period">/mês • Sem fidelidade</div>
+      <ul class="plano-features"><li>Tudo do Premium</li><li>4 sessões c/ personal/mês</li><li>Nutricionista incluso</li><li>Acesso a todas as unidades</li><li>Suplementos mensais</li></ul>
+      <button class="btn-red-outline" onclick="scroll2()">Assinar Agora</button>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="modalidades" id="modalidades">
+
+  <div class="modal-inner">
+    <div class="reveal"><p class="sec-tag">Modalidades</p><h2 class="sec-title">TREINOS PARA TODOS</h2></div>
+    <div class="modal-grid reveal">
+      <div class="modal-item"><div class="modal-icon">🏋️</div><div class="modal-name">Musculação</div><p class="modal-desc">Área ampla com equipamentos premium para todos os grupos musculares.</p></div>
+      <div class="modal-item"><div class="modal-icon">🔥</div><div class="modal-name">Crossfit</div><p class="modal-desc">Treinos de alta intensidade que combinam força, condicionamento e agilidade.</p></div>
+      <div class="modal-item"><div class="modal-icon">🚴</div><div class="modal-name">Spinning</div><p class="modal-desc">Aulas de bike indoor com música e instrutores que te levam ao limite.</p></div>
+      <div class="modal-item"><div class="modal-icon">🥊</div><div class="modal-name">Muay Thai</div><p class="modal-desc">Arte marcial completa para quem quer condicionamento e autodefesa.</p></div>
+      <div class="modal-item"><div class="modal-icon">🧘</div><div class="modal-name">Pilates</div><p class="modal-desc">Fortalecimento do core, flexibilidade e postura com método Pilates.</p></div>
+      <div class="modal-item"><div class="modal-icon">🌿</div><div class="modal-name">Yoga</div><p class="modal-desc">Equilíbrio entre corpo e mente com aulas para iniciantes e avançados.</p></div>
+      <div class="modal-item"><div class="modal-icon">⚡</div><div class="modal-name">Funcional</div><p class="modal-desc">Treinos funcionais com movimentos naturais para performance máxima.</p></div>
+      <div class="modal-item"><div class="modal-icon">🏃</div><div class="modal-name">Cardio Zone</div><p class="modal-desc">Zona exclusiva de cardio com esteiras, elípticos e bikes modernos.</p></div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="trainers" id="trainers">
+
+  <div class="reveal"><p class="sec-tag">Nossa Equipe</p><h2 class="sec-title">TRAINERS DE ELITE</h2></div>
+  <div class="trainers-grid reveal">
+    <div class="trainer-card"><div class="trainer-img">💪</div><div class="trainer-info"><div class="trainer-name">Bruno Carvalho</div><div class="trainer-role">Musculação & Personal</div></div></div>
+    <div class="trainer-card"><div class="trainer-img">🥊</div><div class="trainer-info"><div class="trainer-name">Rafael Lima</div><div class="trainer-role">Muay Thai & Crossfit</div></div></div>
+    <div class="trainer-card"><div class="trainer-img">🧘</div><div class="trainer-info"><div class="trainer-name">Julia Santos</div><div class="trainer-role">Yoga & Pilates</div></div></div>
+    <div class="trainer-card"><div class="trainer-img">⚡</div><div class="trainer-info"><div class="trainer-name">Diego Mota</div><div class="trainer-role">Funcional & Spinning</div></div></div>
+  </div>
+
+</section>
+
+
+<section class="cta-section">
+  <h2 class="cta-title">PRIMEIRA SEMANA GRÁTIS</h2>
+  <p class="cta-desc">Venha conhecer a APEX GYM sem compromisso. 7 dias de acesso completo, gratuito.</p>
+  <a href="#contato" class="btn-red" style="background:#fff;color:var(--red);font-size:.9rem;padding:.9rem 2.5rem">Quero Minha Semana Grátis</a>
+</section>
+
+<section class="form-section" id="contato">
+  <div class="reveal"><p class="sec-tag">Contato</p><h2 class="sec-title">VAMOS COMEÇAR?</h2></div>
+  <form class="contact-form reveal" onsubmit="sub(event)">
+    <div class="cf-field"><label>Nome</label><input type="text" placeholder="Seu nome completo"></div>
+    <div class="cf-field"><label>WhatsApp</label><input type="tel" placeholder="(11) 99999-9999"></div>
+    <div class="cf-field"><label>Plano de interesse</label><select><option>Básico — R$89/mês</option><option>Premium — R$149/mês</option><option>Elite — R$249/mês</option><option>Semana grátis primeiro</option></select></div>
+    <div class="cf-field"><label>Objetivo</label><select><option>Perder peso</option><option>Ganhar massa muscular</option><option>Condicionamento físico</option><option>Saúde e bem-estar</option></select></div>
+    <button type="submit" class="btn-red" style="padding:1rem;font-size:.9rem;width:100%;clip-path:none;border-radius:0;margin-top:.5rem">GARANTIR MINHA VAGA</button>
+  </form>
+
+</section>
+
+<footer>
+    
+  <div class="footer-inner">
+    <div><a href="#" class="footer-logo">APEX<span>GYM</span></a><p class="footer-desc">A academia que transforma vidas em São Paulo desde 2016. Equipamentos premium, comunidade forte.</p></div>
+    <div><p class="footer-col-title">Modalidades</p><ul class="footer-col-links"><li><a href="#">Musculação</a></li><li><a href="#">Crossfit</a></li><li><a href="#">Spinning</a></li><li><a href="#">Muay Thai</a></li><li><a href="#">Yoga & Pilates</a></li></ul></div>
+    <div><p class="footer-col-title">Contato</p><ul class="footer-col-links"><li><a href="#">(11) 94567-8901</a></li><li><a href="#">contato@apexgym.com.br</a></li><li><a href="#">Av. Brasil, 2500 — SP</a></li><li><a href="#">24h / 7 dias por semana</a></li></ul></div>
+  </div>
+
+  <div class="footer-bottom"><p>© 2024 <span class="ft-red">APEX GYM</span>. Todos os direitos reservados.</p><p>Desenvolvido por <span class="ft-red">markTDonizeti</span></p></div>
+</footer>
+
+<div id="toast" style="display:none;position:fixed;bottom:2rem;right:2rem;background:var(--red);color:#fff;padding:1rem 2rem;font-size:.875rem;z-index:999">✓ Recebemos seu contato! Falaremos em breve.</div>
+<script>
+
+  document.querySelectorAll('.reveal').forEach(r=>new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('visible')),{threshold:.1}).observe(r));
+  function sub(e){e.preventDefault();const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',4000)}
+  function scroll2(){document.getElementById('contato').scrollIntoView({behavior:'smooth'})}
+</script>
+
+</body>
+
+</html>

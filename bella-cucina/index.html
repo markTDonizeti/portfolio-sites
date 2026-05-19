@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Cucina — Restaurante Italiano</title>
+<meta name="description" content="Landing page profissional de restaurante italiano com foco em reservas, experiência premium e atendimento via WhatsApp.">
+<meta name="keywords" content="restaurante italiano, site de restaurante, reservas online, landing page gastronômica">
+<meta property="og:title" content="Bella Cucina — Restaurante Italiano">
+<meta property="og:description" content="Site de restaurante com design premium e captação de reservas por WhatsApp.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1208;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --terracotta: #C4622D;
+    --muted: #8A7D6B;
+    --white: #FDFAF4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.1s;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transition: all 0.15s ease;
+    opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(26, 18, 8, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 4rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 300;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-reserve {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold); padding: 0.6rem 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: none;
+    transition: all 0.3s;
+  }
+  .nav-reserve:hover { background: var(--gold); color: var(--dark); }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: var(--dark);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(196,98,45,0.06) 0%, transparent 50%);
+  }
+  .hero-lines {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.15), transparent);
+    transform: translateX(-50%);
+  }
+  .hero-content {
+    text-align: center; z-index: 1;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.5rem; font-weight: 300;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 300; line-height: 0.9;
+    letter-spacing: -0.02em;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--gold);
+    display: block;
+  }
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 0.9rem; color: var(--muted);
+    letter-spacing: 0.08em; font-weight: 300;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex; gap: 1rem; justify-content: center;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 1rem 2.5rem; border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: none;
+    text-decoration: none; display: inline-block;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--cream);
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(245,240,232,0.3);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: none;
+    text-decoration: none; display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--cream); }
+
+  .scroll-indicator {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: fadeUp 1s ease 1.2s both;
+  }
+  .scroll-indicator span {
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* SOBRE */
+  .sobre {
+    padding: 8rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .sobre-img-wrap {
+    position: relative;
+  }
+  .sobre-img {
+    width: 100%; aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #2A1F0F 0%, #3D2B14 50%, #1A1208 100%);
+    position: relative; overflow: hidden;
+  }
+  .sobre-img::before {
+    content: '🍝';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6rem; opacity: 0.15;
+  }
+  .sobre-img-border {
+    position: absolute; top: -1rem; right: -1rem;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(201,168,76,0.3);
+    z-index: -1;
+  }
+  .sobre-year {
+    position: absolute; bottom: -1.5rem; left: -1.5rem;
+    background: var(--gold); color: var(--dark);
+    padding: 1.5rem; text-align: center;
+  }
+  .sobre-year strong {
+    display: block; font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; line-height: 1;
+  }
+  .sobre-year span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300; line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-text {
+    color: var(--muted); font-weight: 300;
+    line-height: 1.9; font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  .divider {
+    width: 3rem; height: 1px;
+    background: var(--gold); margin: 2rem 0;
+  }
+
+  /* MENU */
+  .menu-section {
+    padding: 6rem 4rem;
+    background: linear-gradient(to bottom, var(--dark), #0D0A05, var(--dark));
+  }
+  .menu-header { text-align: center; margin-bottom: 4rem; }
+  .menu-tabs {
+    display: flex; justify-content: center; gap: 0;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(201,168,76,0.2);
+    max-width: 500px; margin: 0 auto 3rem;
+  }
+  .menu-tab {
+    flex: 1; padding: 0.8rem 1.5rem;
+    background: none; border: none;
+    color: var(--muted); cursor: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase; transition: all 0.3s;
+    border-right: 1px solid rgba(201,168,76,0.2);
+  }
+  .menu-tab:last-child { border-right: none; }
+  .menu-tab.active { background: var(--gold); color: var(--dark); }
+  .menu-tab:hover:not(.active) { color: var(--gold); }
+
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1px; background: rgba(201,168,76,0.1);
+    max-width: 1100px; margin: 0 auto;
+  }
+  .menu-item {
+    background: var(--dark); padding: 2rem;
+    transition: background 0.3s;
+    display: none;
+  }
+  .menu-item.visible { display: block; }
+  .menu-item:hover { background: #1F160A; }
+  .menu-item-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 0.5rem;
+  }
+  .menu-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400;
+  }
+  .menu-item-price {
+    color: var(--gold); font-size: 1.1rem;
+    font-family: 'Cormorant Garamond', serif;
+    white-space: nowrap;
+  }
+  .menu-item-desc {
+    color: var(--muted); font-size: 0.85rem;
+    line-height: 1.6; font-weight: 300;
+  }
+  .menu-item-tag {
+    display: inline-block; margin-top: 0.8rem;
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--terracotta);
+    border: 1px solid var(--terracotta);
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* AMBIENTE */
+  .ambiente {
+    padding: 6rem 4rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .ambiente-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 250px 250px;
+    gap: 1rem; margin-top: 3rem;
+  }
+  .amb-img {
+    background: linear-gradient(135deg, #2A1F0F, #1A1208);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .amb-img:first-child { grid-row: 1 / 3; }
+  .amb-img span { font-size: 3rem; opacity: 0.2; }
+  .amb-img::after {
+    content: ''; position: absolute; inset: 0;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: border-color 0.3s;
+  }
+  .amb-img:hover::after { border-color: rgba(201,168,76,0.4); }
+
+  /* RESERVA */
+  .reserva {
+    padding: 8rem 4rem;
+    background: linear-gradient(135deg, #1F160A 0%, #0D0A05 100%);
+    text-align: center;
+  }
+  .reserva-content { max-width: 600px; margin: 0 auto; }
+  .reserva-form {
+    margin-top: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+  .form-group label {
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .form-group input, .form-group select {
+    background: transparent;
+    border: none; border-bottom: 1px solid rgba(201,168,76,0.3);
+    color: var(--cream); padding: 0.8rem 0;
+    font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.3s;
+    cursor: none;
+  }
+  .form-group select option { background: var(--dark); }
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--gold);
+  }
+  .form-full { grid-column: 1 / -1; }
+  .form-submit {
+    grid-column: 1 / -1; margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 4rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; font-size: 1.8rem; }
+  .footer-text { color: var(--muted); font-size: 0.85rem; line-height: 1.8; font-weight: 300; }
+  .footer-title {
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom {
+    padding: 1.5rem 4rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { color: var(--muted); font-size: 0.75rem; }
+  .footer-gold { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollLine {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.3; transform: scaleY(0.5); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* STATS */
+  .stats {
+    padding: 4rem;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .stat {
+    text-align: center; padding: 2rem;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav.scrolled { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-title { font-size: 3.5rem; }
+    .sobre { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+    .menu-section { padding: 4rem 1.5rem; }
+    .stats { grid-template-columns: 1fr 1fr; padding: 2rem; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .ambiente { padding: 4rem 1.5rem; }
+    .ambiente-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .amb-img:first-child { grid-row: auto; grid-column: 1 / -1; }
+    .reserva { padding: 4rem 1.5rem; }
+    .reserva-form { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Bella <span>Cucina</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Nossa História</a></li>
+    <li><a href="#menu">Cardápio</a></li>
+    <li><a href="#ambiente">Ambiente</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <button class="nav-reserve" onclick="window.open('https://wa.me/551134567890?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20reserva%20na%20Bella%20Cucina.','_blank')">Reservar Mesa</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Desde 1987 — São Paulo, Brasil</p>
+    <h1 class="hero-title">
+      Cucina
+      <em>Autentica</em>
+    </h1>
+    <p class="hero-sub">Sabores da Itália preparados com ingredientes selecionados<br>e décadas de tradição familiar</p>
+    <div class="hero-cta">
+      <a href="#menu" class="btn-primary">Ver Cardápio</a>
+      <a href="#reserva" class="btn-ghost">Fazer Reserva</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="stats reveal">
+  <div class="stat">
+    <div class="stat-num">37</div>
+    <div class="stat-label">Anos de história</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">80+</div>
+    <div class="stat-label">Pratos no cardápio</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4.9</div>
+    <div class="stat-label">Avaliação média</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">12k</div>
+    <div class="stat-label">Clientes por ano</div>
+  </div>
+</div>
+
+<section class="sobre" id="sobre">
+  <div class="sobre-img-wrap reveal">
+    <div class="sobre-img"></div>
+    <div class="sobre-img-border"></div>
+    <div class="sobre-year">
+      <strong>1987</strong>
+      <span>Fundação</span>
+    </div>
+  </div>
+  <div class="reveal">
+    <p class="section-label">Nossa História</p>
+    <h2 class="section-title">Uma receita de <em>família</em> passada de geração em geração</h2>
+    <div class="divider"></div>
+    <p class="section-text">Nascemos da paixão da família Rossi pela culinária italiana autêntica. Em 1987, o Chef Marco Rossi trouxe de Nápoles as receitas que sua avó ensinara — massas frescas, molhos longamente cozinhados e a filosofia de que comida é amor.</p>
+    <p class="section-text">Hoje, três gerações depois, mantemos o mesmo compromisso: ingredientes frescos, técnicas tradicionais e uma experiência que vai além de um simples jantar.</p>
+    <a href="#reserva" class="btn-primary" style="margin-top:1.5rem; display:inline-block;">Reservar uma Mesa</a>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="menu-header reveal">
+    <p class="section-label">Cardápio</p>
+    <h2 class="section-title">O melhor da <em>culinária</em> italiana</h2>
+  </div>
+  <div class="menu-tabs reveal">
+    <button class="menu-tab active" onclick="filterMenu('entradas', this)">Entradas</button>
+    <button class="menu-tab" onclick="filterMenu('massas', this)">Massas</button>
+    <button class="menu-tab" onclick="filterMenu('principais', this)">Principais</button>
+    <button class="menu-tab" onclick="filterMenu('sobremesas', this)">Sobremesas</button>
+  </div>
+  <div class="menu-grid reveal">
+    <!-- Entradas -->
+    <div class="menu-item visible" data-cat="entradas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Bruschetta al Pomodoro</span>
+        <span class="menu-item-price">R$ 38</span>
+      </div>
+      <p class="menu-item-desc">Pão artesanal tostado com tomates frescos, manjericão e azeite extra virgem importado.</p>
+      <span class="menu-item-tag">Vegetariano</span>
+    </div>
+    <div class="menu-item visible" data-cat="entradas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Carpaccio di Manzo</span>
+        <span class="menu-item-price">R$ 68</span>
+      </div>
+      <p class="menu-item-desc">Filé mignon fatiado finamente, rúcula, lascas de parmesão e alcaparras.</p>
+      <span class="menu-item-tag">Chef's Choice</span>
+    </div>
+    <div class="menu-item visible" data-cat="entradas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Burrata con Prosciutto</span>
+        <span class="menu-item-price">R$ 72</span>
+      </div>
+      <p class="menu-item-desc">Burrata fresca importada, presunto de parma 24 meses e mel trufado.</p>
+      <span class="menu-item-tag">Premium</span>
+    </div>
+    <div class="menu-item visible" data-cat="entradas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Zuppa di Pesce</span>
+        <span class="menu-item-price">R$ 58</span>
+      </div>
+      <p class="menu-item-desc">Sopa cremosa de frutos do mar com tomates pelados e ervas frescas.</p>
+    </div>
+    <!-- Massas -->
+    <div class="menu-item" data-cat="massas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Spaghetti Carbonara</span>
+        <span class="menu-item-price">R$ 89</span>
+      </div>
+      <p class="menu-item-desc">Receita original romana com guanciale, gema de ovo, pecorino e pimenta preta.</p>
+      <span class="menu-item-tag">Tradicional</span>
+    </div>
+    <div class="menu-item" data-cat="massas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Tagliatelle al Ragù</span>
+        <span class="menu-item-price">R$ 94</span>
+      </div>
+      <p class="menu-item-desc">Massa fresca artesanal com ragù bolognese cozido por 6 horas.</p>
+      <span class="menu-item-tag">Chef's Choice</span>
+    </div>
+    <div class="menu-item" data-cat="massas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Risotto ai Funghi</span>
+        <span class="menu-item-price">R$ 102</span>
+      </div>
+      <p class="menu-item-desc">Risotto cremoso com mix de cogumelos selvagens, trufas negras e parmesão.</p>
+      <span class="menu-item-tag">Premium</span>
+    </div>
+    <div class="menu-item" data-cat="massas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Gnocchi al Gorgonzola</span>
+        <span class="menu-item-price">R$ 86</span>
+      </div>
+      <p class="menu-item-desc">Nhoque de batata artesanal com molho cremoso de gorgonzola e nozes.</p>
+      <span class="menu-item-tag">Vegetariano</span>
+    </div>
+    <!-- Principais -->
+    <div class="menu-item" data-cat="principais">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Ossobuco alla Milanese</span>
+        <span class="menu-item-price">R$ 148</span>
+      </div>
+      <p class="menu-item-desc">Jarrete de vitela braseado com gremolata, acompanhado de risotto alla milanese.</p>
+      <span class="menu-item-tag">Signature</span>
+    </div>
+    <div class="menu-item" data-cat="principais">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Branzino al Forno</span>
+        <span class="menu-item-price">R$ 132</span>
+      </div>
+      <p class="menu-item-desc">Robalo assado ao forno com ervas mediterrâneas, limão siciliano e azeite trufado.</p>
+    </div>
+    <div class="menu-item" data-cat="principais">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Costolette d'Agnello</span>
+        <span class="menu-item-price">R$ 156</span>
+      </div>
+      <p class="menu-item-desc">Costeletas de cordeiro com crosta de ervas, purê de batata trufado e jus.</p>
+      <span class="menu-item-tag">Chef's Choice</span>
+    </div>
+    <div class="menu-item" data-cat="principais">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Pollo alla Parmigiana</span>
+        <span class="menu-item-price">R$ 98</span>
+      </div>
+      <p class="menu-item-desc">Frango empanado com molho de tomate, mussarela de búfala gratinada.</p>
+      <span class="menu-item-tag">Clássico</span>
+    </div>
+    <!-- Sobremesas -->
+    <div class="menu-item" data-cat="sobremesas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Tiramisù della Nonna</span>
+        <span class="menu-item-price">R$ 48</span>
+      </div>
+      <p class="menu-item-desc">Receita original da família com mascarpone, café expresso e biscoito savoiardi.</p>
+      <span class="menu-item-tag">Tradicional</span>
+    </div>
+    <div class="menu-item" data-cat="sobremesas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Panna Cotta al Caramello</span>
+        <span class="menu-item-price">R$ 42</span>
+      </div>
+      <p class="menu-item-desc">Panna cotta de baunilha com calda de caramelo salgado e frutas vermelhas.</p>
+    </div>
+    <div class="menu-item" data-cat="sobremesas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Cannoli Siciliani</span>
+        <span class="menu-item-price">R$ 36</span>
+      </div>
+      <p class="menu-item-desc">Cannoli crocante recheado com ricota, pistache e raspas de laranja.</p>
+      <span class="menu-item-tag">Signature</span>
+    </div>
+    <div class="menu-item" data-cat="sobremesas">
+      <div class="menu-item-header">
+        <span class="menu-item-name">Gelato Artigianale</span>
+        <span class="menu-item-price">R$ 32</span>
+      </div>
+      <p class="menu-item-desc">Gelato artesanal do dia com opções de pistache, stracciatella ou limone.</p>
+      <span class="menu-item-tag">Artesanal</span>
+    </div>
+  </div>
+</section>
+
+<section class="ambiente" id="ambiente">
+  <div class="reveal">
+    <p class="section-label">Nosso Espaço</p>
+    <h2 class="section-title">Um ambiente que <em>transporta</em> você para a Itália</h2>
+  </div>
+  <div class="ambiente-grid reveal">
+    <div class="amb-img"><span>🕯️</span></div>
+    <div class="amb-img"><span>🍷</span></div>
+    <div class="amb-img"><span>🌿</span></div>
+    <div class="amb-img"><span>🎵</span></div>
+    <div class="amb-img"><span>👨‍🍳</span></div>
+  </div>
+</section>
+
+<section class="reserva" id="reserva">
+  <div class="reserva-content reveal">
+    <p class="section-label">Reservas</p>
+    <h2 class="section-title">Reserve sua <em>mesa</em></h2>
+    <p class="section-text">Garanta sua experiência. Aceitamos grupos de até 20 pessoas com menu especial.</p>
+    <form class="reserva-form" onsubmit="handleReserva(event)">
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label>Telefone / WhatsApp</label>
+        <input type="tel" placeholder="(11) 99999-9999">
+      </div>
+      <div class="form-group">
+        <label>Data</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>Horário</label>
+        <select>
+          <option value="">Selecione</option>
+          <option>12h00</option>
+          <option>12h30</option>
+          <option>13h00</option>
+          <option>19h00</option>
+          <option>19h30</option>
+          <option>20h00</option>
+          <option>20h30</option>
+          <option>21h00</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Número de pessoas</label>
+        <select>
+          <option>1-2 pessoas</option>
+          <option>3-4 pessoas</option>
+          <option>5-6 pessoas</option>
+          <option>7-10 pessoas</option>
+          <option>10+ pessoas</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ocasião especial</label>
+        <select>
+          <option value="">Nenhuma</option>
+          <option>Aniversário</option>
+          <option>Casamento</option>
+          <option>Jantar romântico</option>
+          <option>Reunião de negócios</option>
+          <option>Confraternização</option>
+        </select>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-primary" style="width:100%; cursor:none;">Confirmar Reserva</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="footer-brand">
+    <a href="#" class="nav-logo">Bella <span>Cucina</span></a>
+    <p class="footer-text">Autêntica culinária italiana no coração de São Paulo. Uma experiência que vai além da comida.</p>
+  </div>
+  <div>
+    <p class="footer-title">Navegação</p>
+    <ul class="footer-links">
+      <li><a href="#sobre">Nossa História</a></li>
+      <li><a href="#menu">Cardápio</a></li>
+      <li><a href="#ambiente">Ambiente</a></li>
+      <li><a href="#reserva">Reservas</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-title">Contato</p>
+    <ul class="footer-links">
+      <li><a href="#">(11) 3456-7890</a></li>
+      <li><a href="#">contato@bellacucina.com.br</a></li>
+      <li><a href="#">Rua Augusta, 1234 — Jardins, SP</a></li>
+      <li><a href="#">Seg-Dom: 12h às 23h</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2024 <span class="footer-gold">Bella Cucina</span>. Todos os direitos reservados.</p>
+  <p style="color:var(--muted); font-size:0.75rem;">Desenvolvido por <span class="footer-gold">markTDonizeti</span></p>
+</div>
+
+<div id="toast" style="display:none; position:fixed; bottom:2rem; right:2rem; background:var(--gold); color:var(--dark); padding:1rem 2rem; font-size:0.85rem; letter-spacing:0.05em; z-index:999; animation:fadeUp 0.3s ease;">
+  ✓ Reserva enviada! Entraremos em contato em breve.
+</div>
+<a href="https://wa.me/551134567890?text=Ol%C3%A1%2C%20quero%20fazer%20uma%20reserva%20na%20Bella%20Cucina." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" style="position:fixed;left:1.25rem;bottom:1.25rem;background:#25D366;color:#fff;padding:.75rem 1rem;border-radius:999px;font-weight:700;font-size:.8rem;text-decoration:none;z-index:999">WhatsApp</a>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 4 + 'px';
+    cursor.style.top = my - 4 + 'px';
+  });
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) *.12;
+    ring.style.left = rx - 16 + 'px';
+    ring.style.top = ry - 16 + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  // Menu filter
+  function filterMenu(cat, btn) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.classList.toggle('visible', item.dataset.cat === cat);
+    });
+  }
+
+  // Reserva
+  function handleReserva(e) {
+    e.preventDefault();
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    const msg = encodeURIComponent('Olá! Quero fazer uma reserva na Bella Cucina.');
+    window.open(`https://wa.me/551134567890?text=${msg}`, '_blank');
+    setTimeout(() => toast.style.display = 'none', 4000);
+  }
+</script>
+</body>
+</html>
