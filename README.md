@@ -1,4 +1,4 @@
-Portfolio - Websites Freelance
+## Portfolio - Websites Freelance
 
 Este repositório contém projetos de websites desenvolvidos para portfólio profissional com foco em **freelancer web development**.
 
@@ -14,7 +14,7 @@ Website de clínica voltado para confiança, clareza e acessibilidade.
 
 ---
 
-## 🎨 Studio Lumiere
+##  Studio Lumiere
 Website de estúdio criativo com identidade visual forte e moderna.
 
 ---
