@@ -1,48 +1,22 @@
 ## Portfolio - Websites Freelance
 
-Este repositório contém projetos de websites e landing pages desenvolvidos para portfólio profissional com foco em **freelancer web development**, negócios locais e páginas comerciais focadas em conversão.
-
----
-
-## Contato
-**Marcos Donizetti**
-
-- WhatsApp: +55 11 99341-6681
-- Email: marcosjunior105mfm@gmail.com
-- GitHub: https://github.com/markTDonizeti
-- LinkedIn: https://www.linkedin.com/in/marcos-donizetti-48435938b/
+Projetos de websites e landing pages desenvolvidos para portfolio profissional com foco em freelancer web development, negocios locais e paginas comerciais.
 
 ---
 
 ## Projetos principais
-
-## Bella Cucina
-Website de restaurante com foco em design elegante, cardápio, apresentação do ambiente e reserva.
-
-## Clínica Viva
-Website de clínica voltado para confiança, clareza, especialidades e agendamento.
-
-## Studio Lumiere
-Website de estúdio criativo / beleza com identidade visual forte, serviços e CTA de contato.
-
-## Academia
-Website de academia com foco em conversão, planos, modalidades e apresentação visual impactante.
+- Bella Cucina - restaurante com foco em reserva, cardapio e apresentacao premium.
+- Clinica Viva - clinica com foco em confianca, especialidades e agendamento.
+- Studio Lumiere - estudio/beleza com foco em servicos e agendamento.
+- Academia / APEX GYM - academia com foco em planos e captacao de alunos.
 
 ---
 
-## Novos demos comerciais
-
-## Lumina Estética
-Landing page para clínica estética / harmonização / odontologia com foco em agendamento, prova social e apresentação de procedimentos.
-
-## Altos do Vale
-Landing page para corretor, empreendimento ou imobiliária com foco em visita agendada, apresentação premium e captação de leads.
-
-## Clima Rápido
-Landing page para serviço local com foco em orçamento rápido via WhatsApp, regiões atendidas e prova social.
-
-## Workshop Lens Pro
-Landing page para workshop, mentoria, curso ou evento com foco em inscrição, módulos, bônus e CTA.
+## War Portfolio - demos comerciais
+- Lumina Estetica - clinica estetica, harmonizacao e odontologia.
+- Altos do Vale - corretor, imoveis, arquitetura e empreendimento.
+- Clima Rapido - servico local com foco em orcamento via WhatsApp.
+- Workshop Lens Pro - workshop, mentoria, curso ou evento.
 
 ---
 
@@ -58,20 +32,21 @@ Landing page para workshop, mentoria, curso ou evento com foco em inscrição, m
 ---
 
 ## Sobre mim
-Desenvolvedor focado em criação de sites modernos, responsivos e focados em conversão.
+Desenvolvedor focado em criacao de landing pages, sites institucionais e paginas comerciais para negocios locais.
 
-Atualmente atuando na área de freelancing em desenvolvimento web, landing pages, sites institucionais e páginas comerciais para negócios locais.
+---
+
+## Contato
+- WhatsApp: +55 11 99341-6681
+- Email: marcosjunior105mfm@gmail.com
+- GitHub: https://github.com/markTDonizeti
+- LinkedIn: https://www.linkedin.com/in/marcos-donizetti-48435938b/
 
 ---
 
 ## Deploys
-
-https://studio-lumiere-omega.vercel.app/
-
-https://clinica-viva-one.vercel.app/
-
-https://portfolio-sites-a4ku.vercel.app/
-
-https://portfolio-sites-woad.vercel.app/
-
-https://portfolio-sites-hazel.vercel.app/
+- https://studio-lumiere-omega.vercel.app/
+- https://clinica-viva-one.vercel.app/
+- https://portfolio-sites-a4ku.vercel.app/
+- https://portfolio-sites-woad.vercel.app/
+- https://portfolio-sites-hazel.vercel.app/
